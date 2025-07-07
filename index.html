@@ -6,14 +6,22 @@
 
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"/>
 
+    <link rel="stylesheet" href="styles.css"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+
     <title>Frontend Mentor | E-commerce product page</title>
   </head>
   <body>
     <header>
-      <button><img src="./images/icon-menu.svg"/></button>
-      <img src="./images/logo.svg" alt="logo"/>
+      <div>
+        <button><img src="./images/icon-menu.svg"/></button>
+        <img src="./images/logo.svg" alt="logo"/>
+      </div>
 
-      <nav>
+      <nav class="hide">
         <button>Collections</button>
         <button>Men</button>
         <button>Women</button>
@@ -21,29 +29,50 @@
         <button>Contact</button>
       </nav>
 
-      <button><img src="./images/icon-cart.svg"/></button>
-      <button><img src="./images/image-avatar.png" height="32" width="32"/></button>
+      <div class="btn-wrapper">
+        <button>
+          <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="currentColor" fill-rule="nonzero"/></svg>
+        </button>
+        <button><img src="./images/image-avatar.png" height="30" width="30"/></button>
+      </div>
     </header>
 
     <main>
-      <img src="./images/image-product-1.jpg"/>
+      <div class="image-wrapper">
+        <img src="./images/image-product-1.jpg" class="product-image"/>
 
-      <p>Sneaker Company</p>
-      <h1>Fall Limited Edition Sneakers</h1>
-      <p>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+        <button class="prev-next-btns prev">
+          <img src="./images/icon-previous.svg"/>
+        </button>
+        <button class="prev-next-btns next">
+          <img src="./images/icon-next.svg"/>
+        </button>
+      </div>
 
-      <span>$125.00</span>
-      <span>50%</span>
-      <span>$250.00</span>
+      <div class="text">
+        <p class="grey-font">Sneaker Company</p>
+        <h1 class="bigger-font">Fall Limited Edition Sneakers</h1>
+        <p>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-      <button><img src="./images/icon-minus.svg"/></button>
-      <span>0</span>
-      <button><img src="./images/icon-plus.svg"/></button>
+        <div class="prices-wrapper">
+          <div class="org-prices-wrapper">
+            <span class="bigger-font">$125.00</span>
+            <span>50%</span>
+          </div>
+          <span class="grey-font"><s>$250.00</s></span>
+        </div>
 
-      <button>
-        <img src="./images/icon-cart.svg"/>
-        <span>Add to Cart</span>
-      </button>
+        <div class="counter">
+          <button><img src="./images/icon-minus.svg"/></button>
+          <span>0</span>
+          <button><img src="./images/icon-plus.svg"/></button>
+        </div>
+
+        <button id="cart-btn">
+          <img src="./images/icon-cart.svg" height="15px"/>
+          <span>Add to Cart</span>
+        </button>
+      </div>
     </main>
   </body>
 </html>

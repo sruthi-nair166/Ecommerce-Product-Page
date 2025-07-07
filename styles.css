@@ -1,0 +1,183 @@
+*, *::before, *::after {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 700;
+}
+
+:root {
+  --grey: hsl(219, 9%, 45%);
+  --light-grey: hsl(223, 64%, 98%);
+  --orange: hsl(26, 100%, 55%);
+  --light-orange: hsl(25, 100%, 94%);
+}
+
+/* header layout */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 2rem;
+}
+
+header div:first-child button {
+  margin-right: 5px;
+}
+
+/* cart and avatar wrapper */
+
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* cart icon color change */
+
+.btn-wrapper button:first-child svg {
+  color: var(--grey);
+}
+
+.text {
+  margin: 2rem;
+}
+
+.product-image {
+  width: 100%;
+  display: block;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+/* positioning previous and next buttons */
+/* setting % for height and width to make buttons scale with screen size */
+
+.prev-next-btns {
+  position: absolute;
+  background-color: var(--light-grey);
+  border: 1px solid var(--light-grey);
+  border-radius: 50%;
+  height: 7%;
+  width: 7%;
+  z-index: 1;
+  top: 50%;
+}
+
+/* setting % for height to make image within button to scale with screen size */
+
+.prev-next-btns img {
+  height: 60%;
+  margin: 0 auto;
+  display: block;
+}
+
+/* centering img within button */
+
+.prev-next-btns.prev img {
+  transform: translateX(-1px);
+}
+
+.prev-next-btns.next img {
+  transform: translateX(1px);
+}
+
+.prev {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}
+
+/* hiding nav in mobile layout */
+
+.hide {
+  display: none;
+}
+
+/* styling buttons and font */
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+h1 {
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.text > :first-child {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* product description */
+
+.text p:nth-of-type(2) {
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: var(--grey);
+  margin-bottom: 1.5rem;
+}
+
+.prices-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.org-prices-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* discount */
+
+.org-prices-wrapper span:nth-of-type(2) {
+  background-color: black;
+  color: white;
+  padding: 0.2rem 0.5em;
+  border-radius: 5px;
+}
+
+/* for h1 and price */
+
+.bigger-font {
+  font-size: 2rem;
+}
+
+.counter {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light-grey);
+  padding: 0.8rem;
+  margin: 1.2rem 0;
+  border-radius: 5px;
+}
+
+#cart-btn {
+  background-color: var(--orange);
+  width: 100%;
+  padding: 0.8em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 20px 20px 20px var(--light-orange);
+}
+
+#cart-btn span {
+  font-size: 0.8rem;
+}
+
+.grey-font {
+  color: var(--grey);
+}
+
