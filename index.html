@@ -16,18 +16,20 @@
   </head>
   <body>
     <header>
-      <div>
-        <button><img src="./images/icon-menu.svg"/></button>
-        <img src="./images/logo.svg" alt="logo"/>
-      </div>
+      <div class="logo-nav">
+        <div>
+          <button><img src="./images/icon-menu.svg"/></button>
+          <img src="./images/logo.svg" alt="logo"/>
+        </div>
 
-      <nav class="hide">
-        <button>Collections</button>
-        <button>Men</button>
-        <button>Women</button>
-        <button>About</button>
-        <button>Contact</button>
-      </nav>
+        <nav>
+          <button>Collections</button>
+          <button>Men</button>
+          <button>Women</button>
+          <button>About</button>
+          <button>Contact</button>
+        </nav>
+      </div>
 
       <div class="btn-wrapper">
         <button>
@@ -47,6 +49,13 @@
         <button class="prev-next-btns next">
           <img src="./images/icon-next.svg"/>
         </button>
+
+        <div class="thumbnails-wrapper">
+          <img src="./images/image-product-1-thumbnail.jpg"/>
+          <img src="./images/image-product-2-thumbnail.jpg"/>
+          <img src="./images/image-product-3-thumbnail.jpg"/>
+          <img src="./images/image-product-4-thumbnail.jpg"/>
+        </div>
       </div>
 
       <div class="text">
@@ -62,16 +71,18 @@
           <span class="grey-font"><s>$250.00</s></span>
         </div>
 
-        <div class="counter">
-          <button><img src="./images/icon-minus.svg"/></button>
-          <span>0</span>
-          <button><img src="./images/icon-plus.svg"/></button>
-        </div>
+        <div class="counter-cart-wrapper">
+          <div class="counter">
+            <button><img src="./images/icon-minus.svg"/></button>
+            <span>0</span>
+            <button><img src="./images/icon-plus.svg"/></button>
+          </div>
 
-        <button id="cart-btn">
-          <img src="./images/icon-cart.svg" height="15px"/>
-          <span>Add to Cart</span>
-        </button>
+          <button id="cart-btn">
+            <img src="./images/icon-cart.svg" height="15px"/>
+            <span>Add to Cart</span>
+          </button>
+        </div>
       </div>
     </main>
   </body>
