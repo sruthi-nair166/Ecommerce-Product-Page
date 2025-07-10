@@ -11,6 +11,7 @@
   --grey: hsl(219, 9%, 45%);
   --light-grey: hsl(223, 64%, 98%);
   --orange: hsl(26, 100%, 55%);
+  --transparent-orange: hsla(26, 100%, 55%, 0.7);
   --light-orange: hsl(25, 100%, 94%);
 }
 
@@ -39,6 +40,13 @@ header div:first-child button {
 
 .btn-wrapper button:first-child svg {
   color: var(--grey);
+}
+
+/* profile pic hover state */
+
+.btn-wrapper button:nth-of-type(2) img:hover {
+  outline: 3px solid var(--orange);
+  border-radius: 50%;
 }
 
 .text {
@@ -171,6 +179,14 @@ h1 {
   vertical-align: middle;
 }
 
+.counter button:first-child img:hover {
+  opacity: 0.7;
+}
+
+.counter button:nth-of-type(2) img:hover {
+  opacity: 0.7;
+}
+
 #cart-btn {
   background-color: var(--orange);
   width: 100%;
@@ -184,6 +200,10 @@ h1 {
 
 #cart-btn span {
   font-size: 0.8rem;
+}
+
+#cart-btn:hover {
+  background-color: var(--transparent-orange);
 }
 
 .grey-font {
@@ -203,7 +223,7 @@ h1 {
     border-bottom: 1px solid hsla(219, 9%, 45%, 0.3);
     width: 80%;
     margin: 0 auto;
-    padding: 2%;
+    padding: 1.5rem 0;
   }
   .logo-nav {
     display: flex;
@@ -217,6 +237,26 @@ h1 {
     font-weight: 400;
     font-size: 0.9rem;
     color: var(--grey);
+    position: relative;
+  }
+  .logo-nav nav button::after {
+    content: "";
+    position: absolute;
+    bottom: -2rem;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--orange);
+    transform: scaleX(0);
+    transform-origin: center;
+     transition: transform 0.1s ease-in-out;
+  }
+  .logo-nav nav button:hover {
+    color: black;
+  }
+  .logo-nav nav button:hover::after {
+    transform: scaleX(1);
   }
   main {
     display: flex;
@@ -245,11 +285,28 @@ h1 {
     justify-content: space-between;
     margin-top: 1rem;
   }
-  .thumbnails-wrapper img {
-    width: 20%;
+  .thumbnail {
+    position: relative;
+  }
+  .thumbnail img {
+    width: 100%;
     max-width: 75px;
     border-radius: 15px;
     cursor: pointer;
+  }
+  .thumbnail img:hover {
+    opacity: 0.5;
+  }
+  .selected img {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  .selected::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 3px solid var(--orange);
+    border-radius: 15px;
   }
   .prev-next-btns {
     display: none;
