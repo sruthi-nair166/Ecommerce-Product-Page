@@ -15,6 +15,61 @@
   --light-orange: hsl(25, 100%, 94%);
 }
 
+/* overlay */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* menu in mobile layout */
+
+@media (max-width: 850px) {
+  /* nav in mobile */
+  .logo-nav nav.show {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    z-index: 3;
+    height: 100vh;
+    width: 80%;
+    background-color: white;
+    left: 0;
+    top: -1px;
+    padding: 15% 5%;
+  }
+  /* nav buttons */
+  .logo-nav nav.show button:hover {
+    color: var(--grey);
+  }
+  .logo-nav nav.show button {
+    padding: 5%;
+    font-size: 1.5rem;
+  }
+  /* styling close button */
+  .logo-nav div button.show {
+    z-index: 4;
+    position: fixed;
+    left: 6%;
+    top: 3.5%;
+  }
+  .overlay {
+    background-color: hsla(180, 0%, 0%, 0.5);
+  }
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* hiding lightbox in mobile layout */
+  .clone {
+    display: none;
+  }
+}
+
 /* header layout */
 
 header {
@@ -24,7 +79,10 @@ header {
   margin: 1rem 2rem;
 }
 
-header div:first-child button {
+/* menu button styling */
+
+.logo-nav div button {
+  position: static;
   margin-right: 15px;
 }
 
@@ -79,7 +137,7 @@ header div:first-child button {
 /* setting % for height to make image within button to scale with screen size */
 
 .prev-next-btns img {
-  height: 60%;
+  height: 40%;
   margin: 0 auto;
   display: block;
 }
@@ -96,13 +154,14 @@ header div:first-child button {
 
 .prev {
   left: 1rem;
+  display: block;    /* to show and hide when nav is opened and closed */
 }
 
 .next {
   right: 1rem;
 }
 
-/* hiding nav and thumbnails in mobile layout */
+/* hiding nav, close button and thumbnails in mobile layout */
 
 .logo-nav nav {
   display: none;
@@ -216,6 +275,7 @@ h1 {
   body {
     overflow: clip;
   }
+  /* hiding menu button in desktop layout */
   .logo-nav div button {
     display: none;
   }
@@ -238,6 +298,7 @@ h1 {
     font-size: 0.9rem;
     color: var(--grey);
     position: relative;
+    padding: 0 2%;
   }
   .logo-nav nav button::after {
     content: "";
@@ -270,16 +331,68 @@ h1 {
   .image-wrapper {
     max-height: 80%;
   }
-  .text {
-    max-width: 40%;
-    margin: 0;
+  /* lightbox styling */
+  .clone {
+    position: fixed;
+    z-index: 5;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100vw;
+    max-height: 100vh;
+    pointer-events: none;
+    opacity: 0;
+    display: none;
   }
-  .product-image {
+  .clone.zoom {
+    pointer-events: auto;
+    opacity: 1;
+    display: block;
+  }
+  .close {
+    cursor: pointer;
+    z-index: 5;
+    position: fixed;
+    top: -25px;
+    right: 0;
+  }
+  .close svg {
+    color: var(--light-grey);
+  }
+  .close svg:hover {
+    color: var(--orange);
+  }
+  .overlay {
+    background-color: hsla(180, 0%, 0%, 0.8);
+  }
+  .overlay.zoom {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .product-image.zoom {
+    pointer-events: none;
     width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 15px;
+    max-width: 500px;
+    margin-bottom: 7%;
   }
+  .clone.zoom .thumbnails-wrapper {
+    justify-content: space-around;
+  }
+  .prev-next-btns.zoom {
+    display: block;
+    z-index: 6;
+    width: 12%;
+    height: 10%;
+    position: fixed;
+    top: 36%;
+  }
+  .prev.zoom {
+    left: -25px;
+  }
+  .next.zoom {
+    right: -25px;
+  }
+  /* thumbnails wrapper default layout */
   .thumbnails-wrapper {
     display: flex;
     justify-content: space-between;
@@ -287,29 +400,54 @@ h1 {
   }
   .thumbnail {
     position: relative;
+    width: fit-content;
+    height: fit-content;
   }
   .thumbnail img {
     width: 100%;
     max-width: 75px;
     border-radius: 15px;
+    display: block;
+  }
+  .thumbnail::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: white;
+    opacity: 0;
+    border-radius: 15px;
     cursor: pointer;
   }
-  .thumbnail img:hover {
+  .thumbnail:hover::after {
     opacity: 0.5;
   }
-  .selected img {
+  .selected {
     pointer-events: none;
-    opacity: 0.3;
+    border: 3px solid var(--orange);
+    border-radius: 17px;
   }
   .selected::after {
     content: "";
     position: absolute;
     inset: 0;
-    border: 3px solid var(--orange);
     border-radius: 15px;
+    opacity: 0.6;
   }
+  /* hiding prev and next buttons in desktop layout */
   .prev-next-btns {
     display: none;
+  }
+  /* product image default style */
+  .product-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  .text {
+    max-width: 40%;
+    margin: 0;
   }
   .prices-wrapper {
     display: flex;
