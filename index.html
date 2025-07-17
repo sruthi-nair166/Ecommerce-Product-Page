@@ -43,7 +43,7 @@
 
     <main>
       <div class="image-wrapper">
-        <img src="./images/image-product-1.jpg" class="product-image"/>
+        <img src="./images/image-product-1.jpg" class="product-image" data-img="1"/>
 
         <button class="prev-next-btns prev">
           <img src="./images/icon-previous.svg"/>
@@ -54,16 +54,20 @@
 
         <div class="thumbnails-wrapper">
           <!--::after doesnt work on img, so they've each been wrapped in a div -->
-          <div class="thumbnail selected">
+          <div class="thumbnail selected"
+               data-img="1">
             <img src="./images/image-product-1-thumbnail.jpg"/>
           </div>
-          <div class="thumbnail">
+          <div class="thumbnail"
+               data-img="2">
             <img src="./images/image-product-2-thumbnail.jpg"/>
           </div>
-          <div class="thumbnail">
+          <div class="thumbnail"
+               data-img="3">
             <img src="./images/image-product-3-thumbnail.jpg"/>
           </div>
-          <div class="thumbnail">
+          <div class="thumbnail"
+               data-img="4">
             <img src="./images/image-product-4-thumbnail.jpg"/>
           </div>
 
