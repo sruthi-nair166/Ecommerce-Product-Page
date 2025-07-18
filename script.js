@@ -10,6 +10,17 @@ const cloneImageWrapper = document.querySelector(".clone");
 const closeBtn = document.querySelector(".close");
 const thumbnailsWrapper = document.querySelector(".thumbnails-wrapper");
 const thumbnails = document.querySelectorAll(".thumbnail");
+const minusBtn = document.querySelector(".counter button:first-child");
+const plusBtn = document.querySelector(".counter button:last-of-type");
+const qtyDisplay = document.querySelector(".counter span");
+const cartIcon = document.querySelector("#cart-icon");
+const cartTray = document.querySelector("#cart-tray");
+const cartEmpty = document.querySelector(".cart-empty");
+const cartBtn = document.querySelector("#cart-btn");
+const productName = document.querySelector(".text h1");
+const price = document.querySelector(".org-prices-wrapper span:first-child span");
+const cartBadge = document.querySelector(".cart-badge");
+const cartBadgeText = document.querySelector(".cart-badge span");
 
 
 /* styling menu opening and closing in mobile layout */
@@ -153,25 +164,11 @@ thumbnailSelector(thumbnails, productImage);
 
 /* previous and next buttons functionality */
 
-function prev(num) {
-  let number = Number(num);
-
-  if(number <= 1) return "1";
-  return String(number - 1);
-}
-
-function next(num) {
-  let number = Number(num);
-
-  if(number >= 4) return "4";
-  return String(number + 1);
-}
-
 function prevImage(image, btn, tbn) {
   btn.addEventListener("click", () => {
     let currentProductImg = image.dataset.img;
 
-    const prevImg = prev(currentProductImg);
+    const prevImg = Number(currentProductImg) <= 1 ? 1 : Number(currentProductImg) - 1;
 
     imgSet(image, prevImg);
 
@@ -185,7 +182,7 @@ function nextImage(image, btn, tbn) {
   btn.addEventListener("click", () => {
     let currentProductImg = image.dataset.img;
 
-    const nextImg = next(currentProductImg);
+    const nextImg = Number(currentProductImg) >= 4 ? 4 : Number(currentProductImg) + 1;
 
     imgSet(image, nextImg);
 
@@ -198,5 +195,89 @@ function nextImage(image, btn, tbn) {
 prevImage(productImage, prevBtn);
 nextImage(productImage, nextBtn);
 
+/* quantity of product(s) */
 
+minusBtn.addEventListener("click", () => {
+  let qty = Number(qtyDisplay.innerText);
+
+  if(qty > 0) {
+    qty--;
+    qtyDisplay.innerText = `${qty}`;
+  }
+})
+
+plusBtn.addEventListener("click", () => {
+  let qty = Number(qtyDisplay.innerText);
+
+  qty++;
+  qtyDisplay.innerText = `${qty}`;
+});
+
+/* opening and closing the cart tray */
+
+cartIcon.addEventListener("click", () => {
+  cartTray.classList.toggle("open");
+});
+
+/* add to cart functionality */
+
+cartBtn.addEventListener("click", () => {
+  const qty = Number(qtyDisplay.textContent);
+
+  if(qty <= 0) {
+    alert("No items to add");
+  } 
+  
+  else {
+    cartEmpty.classList.remove("empty");
+
+    cartBadge.classList.add("fill");
+    cartBadgeText.textContent = `${qty}`;
+
+    const priceText = price.textContent;
+    const total = Number(priceText) * qty;
+
+    if(!cartTray.querySelector(".filled")) {
+      const div = document.createElement("div");
+      cartTray.appendChild(div);
+      div.classList.add("filled");
+
+      const imgUrl = `./images/image-product-1.jpg`;
+      const delIconUrl = `./images/icon-delete.svg`;
+      const productNameText = productName.textContent;
+
+      div.innerHTML = `<div class="product">
+                        <div>
+                          <img src="${imgUrl}" class="img"/>
+                          <div>
+                            <span>${productNameText}</span>
+                            <span>$${priceText} x</span> <span class="qty">${qty}</span>
+                            <span id="total">$${total}</span>
+                          </div>
+                        </div>
+                        <button id="del-cart-btn"><img src="${delIconUrl}"/></button>
+                      </div>
+                      <button id="checkout" class="orange-btn">Checkout</button>`;
+
+      /* cart deletion */
+
+      const delCartBtn = document.querySelector("#del-cart-btn");
+
+      console.log(delCartBtn, div);
+
+      delCartBtn.addEventListener("click", () => {
+        div.remove();
+        cartEmpty.classList.add("empty");
+        qtyDisplay.textContent = "0";
+        cartBadge.classList.remove("fill");
+        cartBadgeText.textContent = "";
+      });
+    }
+
+    else {
+      document.querySelector(".qty").textContent = `${qty}`;
+      document.querySelector("#total").textContent = `$${total}`;
+    }
+  } 
+});
 
